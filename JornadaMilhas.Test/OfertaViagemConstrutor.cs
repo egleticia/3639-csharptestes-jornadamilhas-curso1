@@ -56,6 +56,23 @@ namespace JornadaMilhas.Test
             Assert.False(oferta.EhValido);
         }
 
+        [Fact]
+        public void RetornaTresErrosDeValidacaoQuandoRotaPeriodoEPrecoInvalidos()
+        {
+            // ARRANGE
+            Rota rota = null;
+            Periodo periodo = new Periodo(new DateTime(2024, 6, 1), new DateTime(2024, 5, 10));
+            double preco = -100;
+            int quantidadeEsperada = 3;
+
+            // ACT
+            OfertaViagem oferta = new OfertaViagem(rota, periodo, preco);
+
+
+            // ASSERT
+            Assert.Equal(quantidadeEsperada, oferta.Erros.Count());
+        }
+
 
     }
 }
